@@ -1,40 +1,20 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+
+import { useChat } from '@ai-sdk/react';
 
 import { SyncLoader } from "react-spinners";
 
-import { MessageType } from "./interfaces";
-
-import { getContent } from "../services/chat";
+import { Assistant, User } from "@/components/icons/icons";
 
 import Header from "../components/ui/header";
 import Form from "../components/ui/form";
-import Message from "../components/ui/message";
 
 export default function Home() {
-  const [messages, setMessages] = useState<MessageType[]>([]);
-  const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(false);
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
 
   const messagesRef = useRef<HTMLDivElement>(null);
-
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (!message || message.trim() === '') return;
-
-    const updatedMessages: MessageType[] = [...messages, { role: 'user', content: message }];
-
-    setMessages(updatedMessages);
-    setMessage('');
-    setLoading(true);
-
-    const content = await getContent(updatedMessages);
-
-    setMessages((prevMessages) => [...prevMessages, { role: 'assistant', content }]);
-    setLoading(false);
-  }
 
   useEffect(() => {
     if (messagesRef.current) {
@@ -45,22 +25,29 @@ export default function Home() {
   return (
     <main className="bg-white flex flex-col justify-between h-screen lg:h-[90vh] lg:w-1/2 lg:my-8 mx-auto border rounded-lg shadow-xl">
       <Header />
+
       <div
         ref={messagesRef}
         className="chat-list flex-1 overflow-auto space-y-4 px-4 scroll-smooth"
       >
-        {messages.map((message, index) => (
-          <Message key={index} message={message} />
+        {messages.map(m => (
+          <div key={m.id} className="border-b p-5">
+            <div className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} gap-2`}>
+              {m.role === 'user' ? <User className="w-10 h-10" /> : <Assistant className="w-10 h-10" />}
+              <p className={`${m.role === 'user' ? 'text-green-500' : 'text-blue-500'} font-bold text-lg`}>
+                {m.role}
+              </p>
+            </div>
+            <p className={`${m.role === 'user' ? 'text-right' : 'text-left'} font-medium`}>{m.content}</p>
+          </div>
         ))}
-        {loading && (
-          <SyncLoader size={10} color="#3b82f6" />
-        )}
       </div>
+
       <Form
-        handleFormSubmit={handleFormSubmit}
-        setMessage={(e) => setMessage(e.target.value)}
-        loading={loading}
-        message={message}
+        handleFormSubmit={handleSubmit}
+        setMessage={handleInputChange}
+        loading={isLoading}
+        input={input}
       />
     </main>
   );
