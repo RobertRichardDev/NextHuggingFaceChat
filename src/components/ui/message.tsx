@@ -1,4 +1,4 @@
-import { MessageType } from "../../interfaces";
+import { MessageType } from "../../app/interfaces";
 
 import { Assistant, User } from "../icons/icons";
 

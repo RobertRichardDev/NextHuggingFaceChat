@@ -6,11 +6,11 @@ import { SyncLoader } from "react-spinners";
 
 import { MessageType } from "./interfaces";
 
-import { getContent } from "./services/chat";
+import { getContent } from "../services/chat";
 
-import Header from "./components/ui/header";
-import Form from "./components/ui/form";
-import Message from "./components/ui/message";
+import Header from "../components/ui/header";
+import Form from "../components/ui/form";
+import Message from "../components/ui/message";
 
 export default function Home() {
   const [messages, setMessages] = useState<MessageType[]>([]);

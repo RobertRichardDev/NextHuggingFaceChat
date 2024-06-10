@@ -1,4 +1,4 @@
-import { MessageType } from "../interfaces";
+import { MessageType } from "../app/interfaces";
 
 export const getContent = async (messages: MessageType[]) => {
   const response = await fetch("/api/chat", {
