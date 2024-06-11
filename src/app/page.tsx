@@ -6,7 +6,7 @@ import { useChat } from '@ai-sdk/react';
 
 import Header from "../components/ui/header";
 import Form from "../components/ui/form";
-import Message from "@/components/ui/message";
+import Message from "../components/ui/message";
 
 export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
