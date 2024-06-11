@@ -4,12 +4,9 @@ import React, { useEffect, useRef } from "react";
 
 import { useChat } from '@ai-sdk/react';
 
-import { SyncLoader } from "react-spinners";
-
-import { Assistant, User } from "@/components/icons/icons";
-
 import Header from "../components/ui/header";
 import Form from "../components/ui/form";
+import Message from "@/components/ui/message";
 
 export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
@@ -31,15 +28,7 @@ export default function Home() {
         className="chat-list flex-1 overflow-auto space-y-4 px-4 scroll-smooth"
       >
         {messages.map(m => (
-          <div key={m.id} className="border-b p-5">
-            <div className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} gap-2`}>
-              {m.role === 'user' ? <User className="w-10 h-10" /> : <Assistant className="w-10 h-10" />}
-              <p className={`${m.role === 'user' ? 'text-green-500' : 'text-blue-500'} font-bold text-lg`}>
-                {m.role}
-              </p>
-            </div>
-            <p className={`${m.role === 'user' ? 'text-right' : 'text-left'} font-medium`}>{m.content}</p>
-          </div>
+          <Message key={m.id} message={m} />
         ))}
       </div>
 
