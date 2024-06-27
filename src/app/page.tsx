@@ -25,7 +25,7 @@ export default function Home() {
 
       <div
         ref={messagesRef}
-        className="chat-list flex-1 overflow-auto space-y-4 px-4 scroll-smooth"
+        className="chat-list overflow-auto space-y-4 px-4"
       >
         {messages.map(m => (
           <Message key={m.id} message={m} />
