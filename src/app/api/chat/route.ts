@@ -6,7 +6,7 @@ import { HuggingFaceStream, StreamingTextResponse } from 'ai';
 import { experimental_buildOpenAssistantPrompt } from 'ai/prompts';
 
 const hf = new HfInference(process.env.HUGGINGFACE_TOKEN);
-const model = 'mistralai/Mistral-7B-Instruct-v0.2';
+const model = 'OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5';
 
 export async function POST(req: NextRequest) {
   const { messages } = await req.json();
