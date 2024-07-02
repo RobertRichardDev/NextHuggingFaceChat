@@ -1,9 +1,10 @@
-import { MessageType } from "../../app/interfaces";
-
 import { Assistant, User } from "../icons/icons";
 
 interface MessageProps {
-  message: MessageType;
+  message: {
+    role: string
+    content: string
+  }
 }
 
 export default function Message({ message }: MessageProps) {
