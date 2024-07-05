@@ -11,7 +11,9 @@ import Message from "../components/ui/message";
 export default function Home() {
   const [type, setType] = useState<"chat" | "pdf">("chat");
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    api: type === "chat" ? "/api/chat" : "/api/pdf",
+  });
 
   const messagesRef = useRef<HTMLDivElement>(null);
 
@@ -20,8 +22,6 @@ export default function Home() {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
     }
   }, [messages]);
-
-  console.log(type)
 
   return (
     <main className="bg-white flex flex-col justify-between h-screen lg:h-[90vh] lg:w-1/2 lg:my-8 mx-auto border rounded-lg shadow-xl">
