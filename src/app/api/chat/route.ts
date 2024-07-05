@@ -5,7 +5,7 @@ import { HfInference } from "@huggingface/inference";
 import { HuggingFaceStream, StreamingTextResponse } from 'ai';
 import { experimental_buildOpenAssistantPrompt } from 'ai/prompts';
 
-const hf = new HfInference(process.env.HUGGINGFACE_TOKEN);
+const hf = new HfInference(process.env.HUGGINGFACEHUB_API_KEY);
 const model = 'OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5';
 
 export async function POST(req: NextRequest) {
