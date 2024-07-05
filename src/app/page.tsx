@@ -13,6 +13,11 @@ export default function Home() {
 
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: type === "chat" ? "/api/chat" : "/api/pdf",
+    onResponse: (response) => {
+      if (response.status === 404) {
+        alert("A PDF file was not found. Please upload a PDF file and try again.")
+      };
+    },
   });
 
   const messagesRef = useRef<HTMLDivElement>(null);
