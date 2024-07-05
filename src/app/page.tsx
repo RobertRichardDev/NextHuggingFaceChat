@@ -44,6 +44,7 @@ export default function Home() {
         setMessage={handleInputChange}
         loading={isLoading}
         input={input}
+        type={type}
       />
     </main>
   );
