@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 
 import { ClipLoader } from "react-spinners";
 
@@ -13,11 +13,19 @@ interface FormProps {
 }
 
 export default function Form({ handleFormSubmit, setMessage, loading, input, type }: FormProps) {
-  const [file, setFile] = React.useState<File | null>(null);
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.files) return;
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setFile(event.target.files[0]);
+    try {
+      const formData = new FormData();
+      formData.set("file", event.target.files[0]);
+
+      await fetch("/api/pdf/upload", {
+        method: "POST",
+        body: formData,
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
