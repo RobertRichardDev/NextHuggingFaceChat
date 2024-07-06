@@ -16,8 +16,7 @@
     "langchain": "^0.2.8",
     "next": "14.3.0-canary.9",
     "react": "^18",
-    "react-dom": "^18",
-    "react-spinners": "^0.13.8"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",

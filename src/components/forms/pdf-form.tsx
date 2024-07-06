@@ -1,7 +1,7 @@
-import { ClipLoader } from "react-spinners";
+import { Clip } from "../icons/icons";
 
-import { Clip, Send } from "../icons/icons";
 import Form from "../ui/form";
+import Button from "../ui/button";
 
 interface FormProps {
   handleFormSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -47,9 +47,10 @@ export default function PdfForm({ handleFormSubmit, setMessage, loading, input }
         onChange={setMessage}
         disabled={loading}
       />
-      <button className="py-1 px-2 font-bold border rounded-lg bg-blue-500 text-white">
-        {loading ? <ClipLoader size={20} color="#ffffff" /> : <Send />}
-      </button>
+      <Button
+        loading={loading}
+        disabled={loading}
+      />
     </Form>
   )
 }
