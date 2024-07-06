@@ -1,4 +1,4 @@
-import { Assistant, User } from "../icons/icons";
+import { Bot, User } from "lucide-react"
 
 interface MessageProps {
   message: {
@@ -10,8 +10,8 @@ interface MessageProps {
 export default function Message({ message }: MessageProps) {
   return (
     <div className="border-b p-5">
-      <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} gap-2`}>
-        {message.role === 'user' ? <User className="w-10 h-10" /> : <Assistant className="w-10 h-10" />}
+      <div className={`flex items-center ${message.role === 'user' ? 'justify-end' : 'justify-start'} gap-2 `}>
+        {message.role === 'user' ? <User /> : <Bot />}
         <p className={`${message.role === 'user' ? 'text-green-500' : 'text-blue-500'} font-bold text-lg`}>
           {message.role}
         </p>

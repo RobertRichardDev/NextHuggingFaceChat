@@ -1,4 +1,4 @@
-import { Loader, Send } from "../icons/icons";
+import { LoaderCircle, Send } from "lucide-react";
 
 interface ButtonProps {
   loading: boolean;
@@ -12,7 +12,7 @@ export default function Button({ loading, disabled }: ButtonProps) {
       disabled={disabled}
     >
       {loading ?
-        <Loader className="w-5 h-5 text-white" />
+        <LoaderCircle className="animate-spin" />
         :
         <Send />
       }

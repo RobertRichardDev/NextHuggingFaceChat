@@ -1,4 +1,4 @@
-import { Clip } from "../icons/icons";
+import { Paperclip } from "lucide-react";
 
 import Form from "../ui/form";
 import Button from "../ui/button";
@@ -30,7 +30,7 @@ export default function PdfForm({ handleFormSubmit, setMessage, loading, input }
   return (
     <Form handleFormSubmit={handleFormSubmit}>
       <label htmlFor="file" className="py-1 px-2 font-medium border border-slate-300 focus:outline-none focus:border-slate-500 rounded-lg">
-        <Clip className="w-4 h-4" />
+        <Paperclip />
       </label>
       <input
         type="file"
