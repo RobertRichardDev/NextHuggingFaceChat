@@ -1,11 +1,9 @@
-"use client";
-
-import { useEffect, useRef } from 'react'
+"use client"
 
 import { useChat } from '@ai-sdk/react';
 
-import Message from '@/components/ui/message'
 import PdfForm from '@/components/forms/pdf-form'
+import Messages from '@/components/ui/messages';
 
 export default function PDF() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
@@ -17,25 +15,9 @@ export default function PDF() {
     },
   });
 
-  const messagesRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (messagesRef.current) {
-      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
-    }
-  }, [messages]);
-
   return (
     <>
-      <div
-        ref={messagesRef}
-        className="chat-list flex-1 overflow-auto space-y-4 px-4"
-      >
-        {messages.map(m => (
-          <Message key={m.id} message={m} />
-        ))}
-      </div>
-
+      <Messages messages={messages} />
       <PdfForm
         handleFormSubmit={handleSubmit}
         setMessage={handleInputChange}
