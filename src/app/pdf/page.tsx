@@ -1,14 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react'
 
 import { useChat } from '@ai-sdk/react';
 
-import Message from "../components/ui/message";
-import ChatForm from "@/components/forms/chat-form";
+import Message from '@/components/ui/message'
+import PdfForm from '@/components/forms/pdf-form'
 
-export default function Home() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
+export default function PDF() {
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    api: "/api/pdf",
+    onResponse: (response) => {
+      if (response.status === 404) {
+        alert("A PDF file was not found. Please upload a PDF file and try again.")
+      };
+    },
+  });
 
   const messagesRef = useRef<HTMLDivElement>(null);
 
@@ -29,12 +36,12 @@ export default function Home() {
         ))}
       </div>
 
-      <ChatForm
+      <PdfForm
         handleFormSubmit={handleSubmit}
         setMessage={handleInputChange}
         loading={isLoading}
         input={input}
       />
     </>
-  );
+  )
 }
