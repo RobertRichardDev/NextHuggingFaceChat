@@ -42,11 +42,25 @@ export default function PDF() {
           content: preview,
         },
       ]);
-  
+
       const formData = new FormData();
       formData.append('image', image);
-  
-      console.log('Form submitted');
+
+      const response = await fetch('/api/imgtt', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setMessages((prev: Message[]) => [
+          ...prev,
+          {
+            role: 'bot',
+            content: data.generated_text,
+          },
+        ]);
+      }
     } catch (error) {
       setMessages((prev: Message[]) => [
         ...prev,
