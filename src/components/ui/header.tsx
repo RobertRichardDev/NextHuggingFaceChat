@@ -12,13 +12,18 @@ export default function Header() {
   const links = [
     {
       href: "/",
-      label: "Chat", 
+      label: "Chat",
       active: pathname === "/"
     },
     {
       href: "/pdf",
       label: "Chat with PDF",
-      active:  pathname == "/pdf"
+      active: pathname == "/pdf"
+    },
+    {
+      href: "/imgtt",
+      label: "Image to Text",
+      active: pathname == "/imgtt"
     },
   ];
 

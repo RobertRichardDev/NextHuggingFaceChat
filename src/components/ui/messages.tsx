@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-import { Message as MessageType } from "ai";
+import { Message as MessageType } from "@/type";
 
 import Message from "./message";
 
@@ -24,8 +24,8 @@ export default function Messages({ messages }: MessageProps) {
       ref={messagesRef}
       className="chat-list flex-1 overflow-auto space-y-4 px-4"
     >
-      {messages.map(m => (
-        <Message key={m.id} message={m} />
+      {messages.map((m, index) => (
+        <Message key={index} message={m} />
       ))}
     </div>
   )
