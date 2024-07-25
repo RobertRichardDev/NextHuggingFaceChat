@@ -3,7 +3,7 @@
 import { Message } from '@/type';
 import { useState } from 'react';
 
-import ImageToTextForm from '@/components/forms/imgtt';
+import ImageToTextForm from '@/components/forms/imgtt-form';
 import Messages from '@/components/ui/messages';
 
 export default function ImageToText() {
