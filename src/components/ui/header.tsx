@@ -25,6 +25,11 @@ export default function Header() {
       label: "Image to Text",
       active: pathname == "/imgtt"
     },
+    {
+      href: "/ttimg",
+      label: "Text To Image",
+      active: pathname == "/ttimg"
+    },
   ];
 
   return (

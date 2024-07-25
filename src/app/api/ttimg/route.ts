@@ -6,17 +6,17 @@ const hf = new HfInference(process.env.HUGGINGFACEHUB_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.formData();
-    const image = data.get("image") as File;
+    const { input } = await req.json();
 
-    const buffer = Buffer.from(await image.arrayBuffer());
-
-    const text = await hf.imageToText({
-      data: buffer,
-      model: 'Salesforce/blip-image-captioning-large'
+    const image = await hf.textToImage({
+      inputs: input,
+      model: 'stabilityai/stable-diffusion-2',
+      parameters: {
+        negative_prompt: 'blurry',
+      }
     });
 
-    return NextResponse.json(text);
+    return new Response(image);
   } catch (error: any) {
     return NextResponse.json({ err: error.message }, { status: 500 });
   }

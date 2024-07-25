@@ -3,10 +3,10 @@
 import { Message } from '@/type';
 import { useState } from 'react';
 
-import ImageToTextForm from '@/components/forms/imgtt';
+import ImageToTextForm from '@/components/forms/imgtt-form';
 import Messages from '@/components/ui/messages';
 
-export default function PDF() {
+export default function ImageToText() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>('');
