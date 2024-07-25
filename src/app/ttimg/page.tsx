@@ -21,6 +21,7 @@ export default function TextToImage() {
 
     try {
       setLoading(true);
+      setInput('');
       setMessages((prev: Message[]) => [
         ...prev,
         {
