@@ -1,4 +1,6 @@
-import { Paperclip } from "lucide-react";
+import { useState } from "react";
+
+import { FileCheck, FileUp } from "lucide-react";
 
 import Form from "../ui/form";
 import Button from "../ui/button";
@@ -11,6 +13,8 @@ interface FormProps {
 }
 
 export default function PdfForm({ handleFormSubmit, setMessage, loading, input }: FormProps) {
+  const [isUploaded, setIsUploaded] = useState(false);
+
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
 
@@ -18,10 +22,14 @@ export default function PdfForm({ handleFormSubmit, setMessage, loading, input }
       const formData = new FormData();
       formData.set("file", event.target.files[0]);
 
-      await fetch("/api/pdf/upload", {
+      const res = await fetch("/api/pdf/upload", {
         method: "POST",
         body: formData,
       });
+
+      if (res.ok) {
+        setIsUploaded(true);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +38,11 @@ export default function PdfForm({ handleFormSubmit, setMessage, loading, input }
   return (
     <Form handleFormSubmit={handleFormSubmit}>
       <label htmlFor="file" className="py-1 px-2 font-medium border border-slate-300 focus:outline-none focus:border-slate-500 rounded-lg">
-        <Paperclip />
+        {isUploaded ?
+          <FileCheck className="text-green-600" />
+          :
+          <FileUp className="text-blue-600" />
+        }
       </label>
       <input
         type="file"
@@ -49,7 +61,7 @@ export default function PdfForm({ handleFormSubmit, setMessage, loading, input }
       />
       <Button
         loading={loading}
-        disabled={loading}
+        disabled={loading || !isUploaded}
       />
     </Form>
   )
