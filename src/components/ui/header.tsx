@@ -38,7 +38,7 @@ export default function Header() {
         <h1 className="font-bold text-3xl">Hugging Face Chat</h1>
         <Logo className="w-20 h-20" />
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex justify-center items-center flex-wrap gap-2 pt-2">
         {links.map(({ href, label, active }) => (
           <Link
             key={`${href}${label}`}
