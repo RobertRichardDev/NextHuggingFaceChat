@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-import { HfInference } from "@huggingface/inference";
-
-const hf = new HfInference(process.env.HUGGINGFACEHUB_API_KEY);
+import { hf } from "@/utils/inference";
 
 export async function POST(req: NextRequest) {
   try {
