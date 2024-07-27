@@ -41,7 +41,7 @@ export default function ImageToTextForm({ handleFormSubmit, handleDrop, handleCh
       </div>
       <Button
         loading={loading}
-        disabled={loading}
+        disabled={!preview || loading}
       />
     </Form>
   )

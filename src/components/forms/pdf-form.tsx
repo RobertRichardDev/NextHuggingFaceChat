@@ -61,7 +61,7 @@ export default function PdfForm({ handleFormSubmit, setMessage, loading, input }
       />
       <Button
         loading={loading}
-        disabled={loading || !isUploaded}
+        disabled={loading}
       />
     </Form>
   )

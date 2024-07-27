@@ -20,7 +20,7 @@ export default function ChatForm({ handleFormSubmit, setMessage, loading, input 
       />
       <Button
         loading={loading}
-        disabled={loading}
+        disabled={!input || loading}
       />
     </Form>
   )

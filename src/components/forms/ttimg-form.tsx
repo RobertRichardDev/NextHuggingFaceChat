@@ -21,7 +21,7 @@ export default function TextToImageForm({ handleFormSubmit, setInput, loading, i
       />
       <Button
         loading={loading}
-        disabled={loading}
+        disabled={!input || loading}
       />
     </Form>
   )
