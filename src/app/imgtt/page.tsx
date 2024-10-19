@@ -29,6 +29,10 @@ export default function ImageToText() {
     }
   };
 
+  const deletePreview = () => {
+    setPreview('');
+  };
+
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!image) return;
@@ -82,6 +86,7 @@ export default function ImageToText() {
         handleFormSubmit={handleFormSubmit}
         handleDrop={handleDrop}
         handleChange={handleChange}
+        deletePreview={deletePreview}
         preview={preview}
         loading={loading}
       />
